@@ -32,9 +32,9 @@ var (
 	// Db of users credentials.
 	db Db
 	// Stratum endpoint.
-	stratumAddr = "127.0.0.1:9333"
+	stratumAddr = "0.0.0.0:3333"
 	// API endpoint.
-	webAddr = "127.0.0.1:8081"
+	webAddr = "0.0.0.0:8081"
 	// Out to syslog.
 	syslog = false
 	// GitCommit - Git commit for build
