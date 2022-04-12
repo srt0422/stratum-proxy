@@ -32,9 +32,9 @@ var (
 	// Db of users credentials.
 	db Db
 	// Stratum endpoint.
-	stratumAddr = "127.0.0.1:9332"
+	stratumAddr = "127.0.0.1:9333"
 	// API endpoint.
-	webAddr = "127.0.0.1:8080"
+	webAddr = "127.0.0.1:8081"
 	// Out to syslog.
 	syslog = false
 	// GitCommit - Git commit for build
@@ -56,8 +56,8 @@ var (
 Main function.
 */
 func main() {
-	flag.StringVar(&stratumAddr, "stratum.addr", "127.0.0.1:9332", "Address and port for stratum")
-	flag.StringVar(&webAddr, "web.addr", "127.0.0.1:8080", "Address and port for web server and metrics")
+	flag.StringVar(&stratumAddr, "stratum.addr", "127.0.0.1:9333", "Address and port for stratum")
+	flag.StringVar(&webAddr, "web.addr", "127.0.0.1:8081", "Address and port for web server and metrics")
 	flag.BoolVar(&syslog, "syslog", false, "On true adapt log to out in syslog, hide date and colors")
 	flag.StringVar(&dbPath, "db.path", "proxy.db", "Filepath for SQLite database")
 	flag.StringVar(&tag, "metrics.tag", stratumAddr, "Prometheus metrics proxy tag")
@@ -110,6 +110,7 @@ func InitWorkerServer() {
 	link, _ := net.Listen("tcp", stratumAddr)
 	for {
 		conn, err := link.Accept()
+		LogInfo("accepted a connection", "")
 		if err != nil {
 			LogError("proxy : accept error: %s", "", err.Error())
 			break
