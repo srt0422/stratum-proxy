@@ -32,7 +32,7 @@ var (
 	// Db of users credentials.
 	db Db
 	// Stratum endpoint.
-	stratumAddr = "0.0.0.0:9333"
+	stratumAddr = "0.0.0.0:3333"
 	// API endpoint.
 	webAddr = "0.0.0.0:8081"
 	// Out to syslog.
