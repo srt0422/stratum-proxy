@@ -233,14 +233,14 @@ func (*Mining) Submit(client *rpc2.Client, params []interface{}, res *bool) erro
 	}
 
 	params[0] = pUser
-	pClient.Call("mining.submit", params, res)
+	err := pClient.Call("mining.submit", params, res)
 
 	LogInfo("%s < mining.submit: %s, %s", sID, pAddr, s.job, s.nonce)
 
 	if *res {
 		LogInfo("%s > %s", sID, pAddr, strconv.FormatBool(*res))
 	} else {
-		LogError("%s > %s", sID, pAddr, strconv.FormatBool(*res))
+		LogError("%s > %s; err: %v", sID, pAddr, strconv.FormatBool(*res), err)
 	}
 
 	// The increasing the counter of the accepted shares.
