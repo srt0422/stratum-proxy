@@ -32,7 +32,7 @@ var (
 	// Db of users credentials.
 	db Db
 	// Stratum endpoint.
-	stratumAddr = "0.0.0.0:3333"
+	stratumAddr = "0.0.0.0:9333"
 	// API endpoint.
 	webAddr = "0.0.0.0:8081"
 	// Out to syslog.
@@ -49,14 +49,15 @@ var (
 	// SQLite db path.
 	dbPath = "proxy.db"
 	// Metrics proxy tag.
-	tag = ""
+	tag  = ""
+	pool = ""
 )
 
 /*
 Main function.
 */
 func main() {
-	flag.StringVar(&stratumAddr, "stratum.addr", "0.0.0.0:3333", "Address and port for stratum")
+	flag.StringVar(&stratumAddr, "stratum.addr", "0.0.0.0:9333", "Address and port for stratum")
 	flag.StringVar(&webAddr, "web.addr", "127.0.0.1:8081", "Address and port for web server and metrics")
 	flag.BoolVar(&syslog, "syslog", false, "On true adapt log to out in syslog, hide date and colors")
 	flag.StringVar(&dbPath, "db.path", "proxy.db", "Filepath for SQLite database")
